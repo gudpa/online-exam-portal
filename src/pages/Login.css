@@ -1,0 +1,30 @@
+.container {
+  height: calc(100% - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-container {
+  height: 300px;
+  width: 90%;
+  max-width: 300px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.login-form-container h2 {
+  margin: 20px 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form input,
+.login-form button {
+  width: 100%;
+}
