@@ -1,0 +1,30 @@
+.exam-container {
+  padding: 10px;
+}
+
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.qa {
+  border-bottom: 1px solid black;
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: none;
+}
+
+.qa .question {
+  margin-bottom: 5px;
+}
+
+.options .option {
+  margin-bottom: 5px;
+}
+
+.options .option input {
+    margin-right: 10px;
+}

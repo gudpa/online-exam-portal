@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Input } from "../components/Forms";
-import "./Login.css";
+import "./styles/Login.css";
 
 export default function Login() {
   const [input, setInput] = useState({
