@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/Forms";
+import { Button } from "../../components/Forms";
 import "./styles/AllExams.css";
 
 export default function AllExams() {

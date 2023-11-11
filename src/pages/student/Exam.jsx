@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import "./styles/Exam.css";
-import { Button } from "../components/Forms";
+import { Button } from "../../components/Forms";
 
 export default function Exam() {
   const { id } = useParams();

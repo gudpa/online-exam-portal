@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Input } from "../components/Forms";
-import "./styles/Login.css";
+import { Button, Input } from "../../components/Forms";
+import "./styles/StudentLogin.css";
 
-export default function Login() {
+export default function StudentLogin() {
   const [input, setInput] = useState({
     email: "",
     password: "",

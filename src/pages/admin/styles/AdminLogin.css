@@ -12,6 +12,7 @@
   background-color: white;
   border-radius: 20px;
   padding: 20px;
+  border: 1px solid black;
 }
 
 .login-form-container h2 {
