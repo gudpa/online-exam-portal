@@ -1,0 +1,34 @@
+.manage-qa-container {
+  padding: 10px;
+}
+.manage-qa-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.manage-qa {
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+.manage-qa input {
+  width: 100%;
+}
+.manage-qa .question {
+  margin-bottom: 5px;
+}
+.options .option {
+  margin-bottom: 5px;
+}
+.options .option input {
+  margin-right: 10px;
+}
+.manage-qa .delete-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.save-add-btns {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}

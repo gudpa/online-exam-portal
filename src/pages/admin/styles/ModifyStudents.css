@@ -1,0 +1,50 @@
+.all-ok {
+  background-color: #009000;
+  color: white;
+}
+.all-ok:hover {
+  background-color: #007000;
+}
+.danger {
+  background-color: #b00000;
+  color: white;
+}
+.danger:hover {
+  background-color: #700000;
+}
+.modify-students {
+  width: 100%;
+}
+.modify-students table {
+  width: 100%;
+}
+.modify-students {
+  padding: 10px;
+}
+.modify-students h2 {
+  margin: 10px 0;
+}
+.modify-students table,
+.modify-students table th,
+.modify-students table,
+td {
+  border-collapse: collapse;
+}
+.modify-students table {
+  width: 100%;
+  border: 1px solid black;
+}
+.modify-students table th {
+  background-color: #222;
+  color: white;
+}
+.modify-students table tr {
+  border-bottom: 1px solid black;
+}
+.modify-students table tr:nth-child(even) {
+  background-color: #eee;
+}
+.modify-students table td,
+.modify-students table th {
+  padding: 5px;
+}

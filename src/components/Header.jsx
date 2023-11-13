@@ -15,15 +15,24 @@ export default function Header() {
           />
         </div>
         <div className="btn-container">
+          <Button label="Add Exam" onClick={() => navigate("admin/addexam")} />
           <Button
-            className="login-btn"
-            label="Admin Login"
-            onClick={() => navigate("admin/login")}
+            label="Manage Questions"
+            onClick={() => navigate("admin/managequestions")}
           />
+          <Button
+            label="Add Students"
+            onClick={() => navigate("admin/addstudents")}
+          />
+          <Button
+            label="Modify Students"
+            onClick={() => navigate("admin/modifystudents")}
+          />
+          <Button label="Login" onClick={() => navigate("admin/login")} />
         </div>
       </div>
     );
-  } else {
+  } else if (pathname.split("/")[1] === "student") {
     return (
       <div className="header-container">
         <div className="logo">
@@ -33,11 +42,8 @@ export default function Header() {
           />
         </div>
         <div className="btn-container">
-          <Button
-            className="login-btn"
-            label="Login"
-            onClick={() => navigate("student/login")}
-          />
+          <Button label="Exams" onClick={() => navigate("student/exams")} />
+          <Button label="Login" onClick={() => navigate("student/login")} />
         </div>
       </div>
     );

@@ -1,0 +1,42 @@
+.container {
+  height: calc(100% - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-exam-container {
+  width: 90%;
+}
+.add-exam-container h2 {
+  margin: 20px 0;
+}
+.add-exam {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.add-exam input,
+.add-exam button,
+.add-exam textarea {
+  width: 100%;
+}
+.add-exam textarea {
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.add-exam .small-container {
+  display: flex;
+  gap: 20px;
+}
+.input-container .label-container {
+  margin-bottom: 10px;
+}
+.add-exam .small-container .input-container {
+  width: 25%;
+}
+.save-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}

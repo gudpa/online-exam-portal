@@ -7,6 +7,7 @@ export default function AddStudents() {
   const [student, setStudent] = useState([]);
   const addStudent = () => {
     setStudents([...students, student]);
+    console.log(students);
   };
   const changeHandler = (e) => {
     setStudent({ ...student, [e.target.name]: e.target.value });

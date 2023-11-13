@@ -14,3 +14,7 @@
 .logo img {
   height: 40px;
 }
+.btn-container {
+  display: flex;
+  gap: 20px;
+}
