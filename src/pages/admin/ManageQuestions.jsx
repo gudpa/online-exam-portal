@@ -34,43 +34,58 @@ export default function ManageQuestions() {
         <form onSubmit={(e) => e.preventDefault()} className="manage-qa">
           {questions.map((qa, i) => {
             return (
-              <div className="manage-qa">
-                <div className="input-container">
-                  <div className="label-container">
-                    <label htmlFor="question">{"Question " + (i + 1)}</label>
+              <>
+                <div className="manage-qa">
+                  <div className="input-container">
+                    <div className="label-container">
+                      <label htmlFor="question">{"Question " + (i + 1)}</label>
+                    </div>
+                    <Input
+                      className="question"
+                      value={qa.question}
+                      onChange={changeHandler}
+                      placeholder="Question"
+                      id="question"
+                    />
                   </div>
-                  <Input
-                    className="question"
-                    value={qa.question}
-                    onChange={changeHandler}
-                    placeholder="Question"
-                    id="question"
-                  />
-                </div>
-                <div className="options">
-                  {qa.options.map((option, j) => {
-                    return (
-                      <div className="option input-container">
-                        <div className="label-container">
-                          <label htmlFor={"option-" + (j + 1)}>
-                            {"Option " + (j + 1)}
-                          </label>
+                  <div className="options">
+                    {qa.options.map((option, j) => {
+                      return (
+                        <div className="option input-container">
+                          <div className="label-container">
+                            <label htmlFor={"option-" + (j + 1)}>
+                              {"Option " + (j + 1)}
+                            </label>
+                          </div>
+                          <Input
+                            className="option"
+                            value={option}
+                            onChange={changeHandler}
+                            placeholder={"Option " + (j + 1)}
+                            id={"option-" + (j + 1)}
+                          />
                         </div>
-                        <Input
-                          className="option"
-                          value={option}
-                          onChange={changeHandler}
-                          placeholder={"Option " + (j + 1)}
-                          id={"option-" + (j + 1)}
-                        />
+                      );
+                    })}
+
+                    <div className="option input-container">
+                      <div className="label-container">
+                        <label htmlFor="answer">Correct Answer</label>
                       </div>
-                    );
-                  })}
+                      <select name="answer" onChange={changeHandler}>
+                        <option value="option 1">Option 1</option>
+                        <option value="option 2">Option 2</option>
+                        <option value="option 3">Option 3</option>
+                        <option value="option 4">Option 4</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="delete-btn">
+                    <Button label="Delete" className="danger" />
+                  </div>
                 </div>
-                <div className="delete-btn">
-                  <Button label="Delete" className="danger" />
-                </div>
-              </div>
+                <hr />
+              </>
             );
           })}
         </form>

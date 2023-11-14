@@ -34,16 +34,25 @@ export default function Exam() {
         <div>{exam.std}</div>
       </div>
       <div className="allQa">
-        {exam.qa.map((oneQa) => {
+        {exam.qa.map((oneQa, i) => {
           return (
             <div className="qa">
               <div className="question">{oneQa.question}</div>
               <div className="options">
-                {oneQa.options.map((option) => {
+                {oneQa.options.map((option, j) => {
                   return (
                     <div className="option">
-                      <input type="radio" />
-                      <span className="option">{option}</span>
+                      <input
+                        type="radio"
+                        name={"question-" + i}
+                        id={"question-" + i + "-option-" + j}
+                      />
+                      <label
+                        className="option"
+                        htmlFor={"question-" + i + "-option-" + j}
+                      >
+                        {option}
+                      </label>
                     </div>
                   );
                 })}

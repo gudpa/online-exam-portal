@@ -3,9 +3,31 @@ import { useState } from "react";
 import { Button, Input } from "../../components/Forms";
 
 export default function AddExam() {
-  const [examData, setExamData] = useState({});
+  const initialState = {
+    name: "",
+    desc: "",
+    std: "",
+    startTime: "",
+    endTime: "",
+  };
+  const [examData, setExamData] = useState(initialState);
   const changeHandler = (e) => {
     setExamData({ ...examData, [e.target.name]: e.target.value });
+  };
+  const clickHandler = async () => {
+    let res = await fetch("http://localhost:5000/api/exam/newExam", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(examData),
+    });
+    let data = await res.json();
+    if (data.status === "ok") {
+      setExamData(initialState);
+      alert("Exam added sucessfully!!!");
+    }
   };
   return (
     <div className="container">
@@ -74,7 +96,7 @@ export default function AddExam() {
               />
             </div>
             <div className="input-container save-btn-container">
-              <Button label="Save" />
+              <Button label="Save" onClick={clickHandler} />
             </div>
           </div>
         </form>

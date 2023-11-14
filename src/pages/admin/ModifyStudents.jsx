@@ -41,6 +41,7 @@ export default function ModifyStudents() {
   ];
   const activateStudent = () => {};
   const deactivateStudent = () => {};
+  const deleteStudent = () => {};
   return (
     <div className="modify-students">
       <h2>Modify Students</h2>
@@ -52,6 +53,7 @@ export default function ModifyStudents() {
             <th>Class</th>
             <th>Roll Number</th>
             <th>Status</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -76,6 +78,13 @@ export default function ModifyStudents() {
                       onClick={() => activateStudent()}
                     />
                   )}
+                </td>
+                <td>
+                  <Button
+                    label="Delete"
+                    className="danger"
+                    onClick={() => deleteStudent()}
+                  />
                 </td>
               </tr>
             );
