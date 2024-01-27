@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Forms";
-import "./styles/AllExams.css";
+import "./styles/ManageAllExams.css";
 import { useEffect, useState } from "react";
 
-export default function AllExams() {
+export default function ManageAllExams() {
   const navigate = useNavigate();
   const [exams, setExams] = useState([]);
+  useEffect(() => {
+    if (!window.localStorage.adminLogin) {
+      navigate("/admin/login");
+    }
+  }, [navigate]);
   useEffect(() => {
     fetch("http://localhost:5000/api/exam/allExams")
       .then((res) => res.json())
@@ -23,14 +28,14 @@ export default function AllExams() {
               <div>Description- {exam.desc}</div>
               <div>Class - {exam.class}</div>
               <Button
-                label="Start Exam"
+                label="Manage Questions"
                 className="start-exam-btn"
                 onClick={() => navigate(exam._id)}
               />
             </div>
           );
         })}
-      {exams.length === 0 && "No Exams assigned to you"}
+      {exams.length === 0 && "No Exams found!!!"}
     </div>
   );
 }

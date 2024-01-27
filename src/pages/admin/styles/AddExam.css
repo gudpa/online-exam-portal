@@ -17,6 +17,7 @@
 }
 .add-exam input,
 .add-exam button,
+.add-exam select,
 .add-exam textarea {
   width: 100%;
 }

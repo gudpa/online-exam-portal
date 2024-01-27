@@ -1,17 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles/AddStudents.css";
-import { Button, Input } from "../../components/Forms";
+import { Button, Input, Select } from "../../components/Forms";
 
 export default function AddStudents() {
+  const initialState = { class: "", roll_no: "", fullname: "", email: "" };
   const [students, setStudents] = useState([]);
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState(initialState);
+  const [classes, setClasses] = useState([{ name: "Select an option" }]);
   const addStudent = () => {
     setStudents([...students, student]);
-    console.log(students);
   };
   const changeHandler = (e) => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
+  const addAllStudents = async () => {
+    let res = await fetch(
+      "http://localhost:5000/api/student/newMultipleUsers",
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ users: students }),
+      }
+    );
+    let data = await res.json();
+    if (data.status === "ok") {
+      setStudent(initialState);
+      setStudents([]);
+      alert("Students added sucessfully!!!");
+    }
+  };
+  useEffect(() => {
+    fetch("http://localhost:5000/api/class/allClasses")
+      .then((res) => res.json())
+      .then((data) => {
+        setClasses(data.classes);
+      });
+  }, []);
   return (
     <div className="add-students">
       <h2>Add new students</h2>
@@ -22,34 +49,37 @@ export default function AddStudents() {
               <th>Class</th>
               <th>Roll No.</th>
               <th>Full Name</th>
+              <th>Email Id</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => {
+            {students.map((student, i) => {
               return (
-                <tr>
+                <tr key={i}>
                   <td>{student.class}</td>
-                  <td>{student.roll}</td>
+                  <td>{student.roll_no}</td>
                   <td>{student.fullname}</td>
+                  <td>{student.email}</td>
                   <td></td>
                 </tr>
               );
             })}
             <tr>
               <td>
-                <Input
-                  placeholder="Class"
-                  name="class"
-                  value={student.class}
+                <Select
                   onChange={changeHandler}
+                  name="class"
+                  id="std"
+                  value={student.class}
+                  options={classes}
                 />
               </td>
               <td>
                 <Input
                   placeholder="Roll no"
-                  name="roll"
-                  value={student.roll}
+                  name="roll_no"
+                  value={student.roll_no}
                   onChange={changeHandler}
                 />
               </td>
@@ -62,12 +92,24 @@ export default function AddStudents() {
                 />
               </td>
               <td>
+                <Input
+                  placeholder="Email Id"
+                  name="email"
+                  value={student.email}
+                  onChange={changeHandler}
+                />
+              </td>
+              <td>
                 <Button label="Add" onClick={addStudent} />
               </td>
             </tr>
           </tbody>
         </table>
-        <Button label="Save" className="save-students-btn" />
+        <Button
+          label="Save"
+          className="save-students-btn"
+          onClick={addAllStudents}
+        />
       </form>
     </div>
   );

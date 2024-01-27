@@ -5,6 +5,14 @@ import "./styles/Header.css";
 export default function Header() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const logoutUser = () => {
+    window.localStorage.userId = "";
+    navigate("/student/login");
+  };
+  const logoutAdmin = () => {
+    window.localStorage.adminLogin = "";
+    navigate("/admin/login");
+  };
   if (pathname.split("/")[1] === "admin") {
     return (
       <div className="header-container">
@@ -12,23 +20,27 @@ export default function Header() {
           <img
             src="https://cdn.logo.com/hotlink-ok/logo-social.png"
             alt="logo"
+            onClick={() => navigate("/")}
           />
         </div>
         <div className="btn-container">
-          <Button label="Add Exam" onClick={() => navigate("admin/addexam")} />
-          <Button
-            label="Manage Questions"
-            onClick={() => navigate("admin/managequestions")}
-          />
-          <Button
-            label="Add Students"
-            onClick={() => navigate("admin/addstudents")}
-          />
-          <Button
-            label="Modify Students"
-            onClick={() => navigate("admin/modifystudents")}
-          />
-          <Button label="Login" onClick={() => navigate("admin/login")} />
+          {window.localStorage.adminLogin && (
+            <>
+              <Button
+                label="Add Exam"
+                onClick={() => navigate("admin/addexam")}
+              />
+              <Button
+                label="Manage Questions"
+                onClick={() => navigate("admin/managequestions")}
+              />
+              <Button
+                label="Manage Students"
+                onClick={() => navigate("admin/managestudents")}
+              />
+              <Button label="Logout" onClick={logoutAdmin} />
+            </>
+          )}
         </div>
       </div>
     );
@@ -39,11 +51,16 @@ export default function Header() {
           <img
             src="https://cdn.logo.com/hotlink-ok/logo-social.png"
             alt="logo"
+            onClick={() => navigate("/")}
           />
         </div>
         <div className="btn-container">
-          <Button label="Exams" onClick={() => navigate("student/exams")} />
-          <Button label="Login" onClick={() => navigate("student/login")} />
+          {window.localStorage.userId && (
+            <>
+              <Button label="Exams" onClick={() => navigate("student/exams")} />
+              <Button label="Logout" onClick={logoutUser} />
+            </>
+          )}
         </div>
       </div>
     );

@@ -21,10 +21,16 @@
   margin-bottom: 5px;
 }
 
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
 .options .option {
   margin-bottom: 5px;
 }
 
 .options .option input {
-    margin-right: 10px;
+  margin-right: 10px;
 }

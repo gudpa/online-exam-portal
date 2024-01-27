@@ -1,19 +1,29 @@
+import { useEffect, useState } from "react";
+import { Button, Input, Select } from "../../components/Forms";
+import { useNavigate } from "react-router-dom";
+
 import "./styles/AddExam.css";
-import { useState } from "react";
-import { Button, Input } from "../../components/Forms";
 
 export default function AddExam() {
+  const navigate = useNavigate();
   const initialState = {
     name: "",
     desc: "",
-    std: "",
+    class: "",
     startTime: "",
     endTime: "",
   };
   const [examData, setExamData] = useState(initialState);
+  const [classes, setClasses] = useState([{ name: "Select an option" }]);
   const changeHandler = (e) => {
     setExamData({ ...examData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (!window.localStorage.adminLogin) {
+      navigate("/admin/login");
+    }
+  }, [navigate]);
   const clickHandler = async () => {
     let res = await fetch("http://localhost:5000/api/exam/newExam", {
       method: "POST",
@@ -29,6 +39,13 @@ export default function AddExam() {
       alert("Exam added sucessfully!!!");
     }
   };
+  useEffect(() => {
+    fetch("http://localhost:5000/api/class/allClasses")
+      .then((res) => res.json())
+      .then((data) => {
+        setClasses(data.classes);
+      });
+  }, []);
   return (
     <div className="container">
       <div className="add-exam-container">
@@ -63,12 +80,12 @@ export default function AddExam() {
               <div className="label-container">
                 <label htmlFor="std">Class</label>
               </div>
-              <Input
-                type="text"
-                name="std"
-                value={examData.std}
+              <Select
                 onChange={changeHandler}
+                name="class"
                 id="std"
+                value={examData.class}
+                options={classes}
               />
             </div>
             <div className="input-container">

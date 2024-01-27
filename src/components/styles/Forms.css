@@ -20,3 +20,11 @@
   border: 1px solid black;
   background-color: white;
 }
+
+.select {
+  height: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: white;
+}

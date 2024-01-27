@@ -2,10 +2,10 @@ import "./App.css";
 import Header from "./components/Header";
 import Menu from "./pages/Menu";
 import AddExam from "./pages/admin/AddExam";
-import AddStudents from "./pages/admin/AddStudents";
 import AdminLogin from "./pages/admin/AdminLogin";
+import ViewAllExams from "./pages/admin/ViewAllExams";
 import ManageQuestions from "./pages/admin/ManageQuestions";
-import ModifyStudents from "./pages/admin/ModifyStudents";
+import ManageStudents from "./pages/admin/ManageStudents";
 import AllExams from "./pages/student/AllExams";
 import Exam from "./pages/student/Exam";
 import StudentLogin from "./pages/student/StudentLogin";
@@ -23,11 +23,10 @@ function App() {
           <Route path="/student/exams" element={<AllExams />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/addstudents" element={<AddStudents />} />
-          <Route path="/admin/modifystudents" element={<ModifyStudents />} />
+          <Route path="/admin/managestudents" element={<ManageStudents />} />
           <Route path="/admin/addexam" element={<AddExam />} />
-          <Route path="/admin/manageQuestions" element={<ManageQuestions />} />
-
+          <Route path="/admin/manageQuestions" element={<ViewAllExams />} />
+          <Route path="/admin/manageQuestions/:id" element={<ManageQuestions />} />
           <Route path="/" element={<Menu />} />
         </Routes>
       </BrowserRouter>

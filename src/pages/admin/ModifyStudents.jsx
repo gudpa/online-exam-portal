@@ -1,55 +1,76 @@
 import "./styles/ModifyStudents.css";
 import { Button } from "../../components/Forms";
+import { useEffect, useState } from "react";
 
 export default function ModifyStudents() {
-  const students = [
-    {
-      std: "class",
-      roll_no: "roll",
-      name: "name",
-      username: 100,
-      active: false,
-    },
-    {
-      std: "class",
-      roll_no: "roll4",
-      name: "name",
-      username: 100,
-      active: true,
-    },
-    {
-      std: "class",
-      roll_no: "roll1",
-      name: "name",
-      username: 100,
-      active: true,
-    },
-    {
-      std: "class",
-      roll_no: "roll2",
-      name: "name",
-      username: 100,
-      active: true,
-    },
-    {
-      std: "class",
-      roll_no: "roll3",
-      name: "name",
-      username: 100,
-      active: true,
-    },
-  ];
-  const activateStudent = () => {};
-  const deactivateStudent = () => {};
-  const deleteStudent = () => {};
+  const [students, setStudents] = useState([]);
+  const [refresh, setRefresh] = useState(true);
+  
+  const activateStudent = (id) => {
+    fetch("http://localhost:5000/api/student/activateUser/" + id, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          alert("Student activated successfully!!!");
+          setRefresh(!refresh);
+        }
+      });
+  };
+
+  const deactivateStudent = (id) => {
+    fetch("http://localhost:5000/api/student/deactivateUser/" + id, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          alert("Student deactivated successfully!!!");
+          setRefresh(!refresh);
+        }
+      });
+  };
+
+  const deleteStudent = (id) => {
+    fetch("http://localhost:5000/api/student/deleteUser/" + id, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "ok") {
+          alert("Student deleted successfully!!!");
+          setRefresh(!refresh);
+        }
+      });
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/student/allUsers")
+      .then((res) => res.json())
+      .then((data) => setStudents(data.users));
+  }, [refresh]);
+
   return (
     <div className="modify-students">
-      <h2>Modify Students</h2>
+      <h2>Manage Students</h2>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Full Name</th>
+            <th>Email</th>
             <th>Class</th>
             <th>Roll Number</th>
             <th>Status</th>
@@ -57,25 +78,25 @@ export default function ModifyStudents() {
           </tr>
         </thead>
         <tbody>
-          {students.map((student) => {
+          {students.map((student, i) => {
             return (
-              <tr>
-                <td>{student.username}</td>
-                <td>{student.name}</td>
-                <td>{student.std}</td>
+              <tr key={i}>
+                <td>{student.fullname}</td>
+                <td>{student.email}</td>
+                <td>{student.class}</td>
                 <td>{student.roll_no}</td>
                 <td>
                   {student.active ? (
                     <Button
                       label="De-Activate"
                       className="danger"
-                      onClick={() => deactivateStudent()}
+                      onClick={() => deactivateStudent(student._id)}
                     />
                   ) : (
                     <Button
                       label="Activate"
                       className="all-ok"
-                      onClick={() => activateStudent()}
+                      onClick={() => activateStudent(student._id)}
                     />
                   )}
                 </td>
@@ -83,7 +104,7 @@ export default function ModifyStudents() {
                   <Button
                     label="Delete"
                     className="danger"
-                    onClick={() => deleteStudent()}
+                    onClick={() => deleteStudent(student._id)}
                   />
                 </td>
               </tr>
