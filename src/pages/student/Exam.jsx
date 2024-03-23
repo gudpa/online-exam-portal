@@ -51,7 +51,7 @@ export default function Exam() {
       }
     );
     if (res.status === 200) {
-      navigate("/student/exams")
+      navigate("/student/exams");
     }
   };
 
