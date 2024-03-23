@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./styles/Exam.css";
 import { Button } from "../../components/Forms";
 import { useEffect, useState } from "react";
@@ -6,30 +6,18 @@ import { useEffect, useState } from "react";
 export default function Exam() {
   const { id } = useParams();
   const [sol, setSol] = useState([]);
+  const navigate = useNavigate();
   //API to be called for exam using params id
-  const [exam, setExam] = useState({
-    id: "1",
-    name: "Exam 1",
-    desc: "Description 1",
-    std: "Std 1",
-    startTime: "start time 1",
-    endTime: "end time 1",
-    qa: [
-      {
-        question: "Question 1",
-        options: ["option 1", "option 2", "option 3", "option 4"],
-      },
-      {
-        question: "Question 2",
-        options: ["option 1", "option 2", "option 3", "option 4"],
-      },
-      {
-        question: "Question 3",
-        options: ["option 1", "option 2", "option 3", "option 4"],
-      },
-    ],
-  });
+  const [exam, setExam] = useState({ qa: [] });
 
+  useEffect(() => {
+    fetch("http://localhost:5000/api/exam/viewQuestions/" + id)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setExam(data.exams[0]);
+      });
+  }, [id]);
   useEffect(() => {
     let temp = [];
     temp.length = exam.qa.length;
@@ -51,7 +39,7 @@ export default function Exam() {
 
   const submitExam = async () => {
     let studentId = localStorage.userId;
-    let res = fetch(
+    let res = await fetch(
       "http://localhost:5000/api/student/submitExam/" + studentId + "/" + id,
       {
         method: "POST",
@@ -62,6 +50,9 @@ export default function Exam() {
         body: JSON.stringify({ solution: sol }),
       }
     );
+    if (res.status === 200) {
+      navigate("/student/exams")
+    }
   };
 
   return (
@@ -71,7 +62,7 @@ export default function Exam() {
         <div>{exam.std}</div>
       </div>
       <div className="allQa">
-        {exam.qa.map((oneQa, i) => {
+        {exam?.qa.map((oneQa, i) => {
           return (
             <div className="qa" key={i}>
               <div className="question">{oneQa.question}</div>
