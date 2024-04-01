@@ -7,9 +7,10 @@
   border-bottom: 1px solid black;
   align-items: center;
 }
-.header-container .logo {
+.logo {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .logo img {
   height: 40px;
