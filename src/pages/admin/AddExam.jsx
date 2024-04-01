@@ -11,12 +11,13 @@ export default function AddExam() {
     desc: "",
     class: "",
     startTime: "",
-    endTime: "",
+    duration: "",
   };
   const [examData, setExamData] = useState(initialState);
   const [classes, setClasses] = useState([{ name: "Select an option" }]);
   const changeHandler = (e) => {
     setExamData({ ...examData, [e.target.name]: e.target.value });
+    console.log(examData);
   };
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function AddExam() {
       .then((res) => res.json())
       .then((data) => {
         setClasses(data.classes);
+        setExamData({ ...examData, class: data.classes[0].name });
       });
   }, []);
   return (
@@ -98,18 +100,21 @@ export default function AddExam() {
                 value={examData.startTime}
                 onChange={changeHandler}
                 id="startTime"
+                min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+                  .toISOString()
+                  .substring(0, 16)}
               />
             </div>
             <div className="input-container">
               <div className="label-container">
-                <label htmlFor="endTime">End time</label>
+                <label htmlFor="duration">Duration (mins)</label>
               </div>
               <Input
-                type="datetime-local"
-                name="endTime"
-                value={examData.endTime}
+                type="number"
+                name="duration"
+                value={examData.duration}
                 onChange={changeHandler}
-                id="endTime"
+                id="duration"
               />
             </div>
             <div className="input-container save-btn-container">

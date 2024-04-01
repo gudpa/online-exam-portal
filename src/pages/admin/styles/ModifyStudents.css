@@ -47,4 +47,5 @@ td {
 .modify-students table td,
 .modify-students table th {
   padding: 5px;
+  text-align: center;
 }

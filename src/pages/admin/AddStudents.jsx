@@ -37,6 +37,7 @@ export default function AddStudents() {
       .then((res) => res.json())
       .then((data) => {
         setClasses(data.classes);
+        setStudent({ ...student, class: data.classes[0].name });
       });
   }, []);
   return (
