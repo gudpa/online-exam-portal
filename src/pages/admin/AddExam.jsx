@@ -16,8 +16,8 @@ export default function AddExam() {
   const [examData, setExamData] = useState(initialState);
   const [classes, setClasses] = useState([{ name: "Select an option" }]);
   const changeHandler = (e) => {
-    setExamData({ ...examData, [e.target.name]: e.target.value });
     console.log(examData);
+    setExamData({ ...examData, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
@@ -100,9 +100,9 @@ export default function AddExam() {
                 value={examData.startTime}
                 onChange={changeHandler}
                 id="startTime"
-                min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
-                  .toISOString()
-                  .substring(0, 16)}
+                // min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+                  // .toISOString()
+                  // .substring(0, 16)}
               />
             </div>
             <div className="input-container">

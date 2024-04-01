@@ -37,7 +37,7 @@ export default function AllExams() {
         ? "There is no ongoing exam assigned to you"
         : ""}
       ;
-      <div className="exam-container">
+      <div className="exams-container">
         {ongoingExams.map((exam, i) => {
           return (
             <div className="exam" key={i}>
@@ -58,27 +58,28 @@ export default function AllExams() {
         ? "There is no upcoming exam assigned to you"
         : ""}
       ;
-      <div className="exam-container">
+      <div className="exams-container">
         {upcomingExams.map((exam, i) => {
           return (
             <div className="exam" key={i}>
               <div>Exam Name - {exam.name}</div>
               <div>Description- {exam.desc}</div>
               <div>Class - {exam.class}</div>
+              <div>Start time - {exam.startTime.replace("T", " ")}</div>
             </div>
           );
         })}
       </div>
       <h3>Past exams</h3>
       {pastExams.length === 0 ? "There is no past exam assigned to you" : ""};
-      <div className="exam-container">
+      <div className="exams-container">
         {pastExams.map((exam, i) => {
           return (
             <div className="exam" key={i}>
               <div>Exam Name - {exam.name}</div>
               <div>Description- {exam.desc}</div>
               <div>Class - {exam.class}</div>
-              <div>Score - </div>
+              <div>Score - {}</div>
             </div>
           );
         })}

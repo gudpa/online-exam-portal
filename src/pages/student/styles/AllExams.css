@@ -1,10 +1,10 @@
-.exam-container {
+.exams-container {
   display: flex;
   gap: 20px;
   padding: 20px;
 }
 
-.exam-container .exam {
+.exams-container .exam {
   width: 25%;
   display: flex;
   gap: 5px;
