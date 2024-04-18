@@ -10,6 +10,7 @@ import AllExams from "./pages/student/AllExams";
 import Exam from "./pages/student/Exam";
 import StudentLogin from "./pages/student/StudentLogin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import StudentSignup from "./pages/student/StudentSignup";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/student" element={<StudentLogin />} />
           <Route path="/student/login" element={<StudentLogin />} />
+          <Route path="/student/signup" element={<StudentSignup />} />
           <Route path="/student/exams/:id" element={<Exam />} />
           <Route path="/student/exams" element={<AllExams />} />
           <Route path="/admin" element={<AdminLogin />} />

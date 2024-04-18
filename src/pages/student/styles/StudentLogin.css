@@ -29,3 +29,23 @@
 .login-form button {
   width: 100%;
 }
+
+.login-form-link {
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 5px;
+}
+
+
+.signup-form-container {
+  height: 450px;
+}
+
+.signup-form-container h2 {
+  margin: 15px 0;
+}
+
+.signup-form-container .login-form {
+  gap: 15px;
+}

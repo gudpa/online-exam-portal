@@ -45,7 +45,7 @@ export default function ManageQuestions() {
       {
         question: "",
         options: ["", "", "", ""],
-        answer: 0,
+        answer: '0',
       },
     ]);
   };

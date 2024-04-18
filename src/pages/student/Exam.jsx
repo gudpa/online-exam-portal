@@ -14,7 +14,6 @@ export default function Exam() {
     fetch("http://localhost:5000/api/exam/viewQuestions/" + id)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setExam(data.exams[0]);
       });
   }, [id]);
@@ -51,6 +50,9 @@ export default function Exam() {
       }
     );
     if (res.status === 200) {
+      let scores = JSON.parse(localStorage.scores);
+      scores[id] = sol;
+      localStorage.scores = JSON.stringify(scores);
       navigate("/student/exams");
     }
   };

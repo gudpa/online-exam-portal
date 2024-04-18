@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import AddStudents from "./AddStudents";
 import ModifyStudents from "./ModifyStudents";
 import { useNavigate } from "react-router-dom";
 
@@ -12,8 +11,6 @@ export default function ManageStudents() {
   }, [navigate]);
   return (
     <>
-      <AddStudents />
-      <hr />
       <ModifyStudents />
     </>
   );

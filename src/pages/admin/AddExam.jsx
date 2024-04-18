@@ -3,20 +3,19 @@ import { Button, Input, Select } from "../../components/Forms";
 import { useNavigate } from "react-router-dom";
 
 import "./styles/AddExam.css";
+import { classes } from "../../constants";
 
 export default function AddExam() {
   const navigate = useNavigate();
   const initialState = {
     name: "",
     desc: "",
-    class: "",
+    class: "First Year",
     startTime: "",
     duration: "",
   };
   const [examData, setExamData] = useState(initialState);
-  const [classes, setClasses] = useState([{ name: "Select an option" }]);
   const changeHandler = (e) => {
-    console.log(examData);
     setExamData({ ...examData, [e.target.name]: e.target.value });
   };
 
@@ -40,14 +39,7 @@ export default function AddExam() {
       alert("Exam added sucessfully!!!");
     }
   };
-  useEffect(() => {
-    fetch("http://localhost:5000/api/class/allClasses")
-      .then((res) => res.json())
-      .then((data) => {
-        setClasses(data.classes);
-        setExamData({ ...examData, class: data.classes[0].name });
-      });
-  }, []);
+  
   return (
     <div className="container">
       <div className="add-exam-container">

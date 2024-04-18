@@ -2,14 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Forms";
 import "./styles/AllExams.css";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../constants";
 
 export default function AllExams() {
   const navigate = useNavigate();
   const [upcomingExams, setUpcomingExams] = useState([]);
   const [pastExams, setPastExams] = useState([]);
   const [ongoingExams, setOngoingExams] = useState([]);
+  const scores = JSON.parse(localStorage.scores);
   useEffect(() => {
-    fetch("http://localhost:5000/api/exam/allExams")
+    fetch(API_URL + "exam/allExams")
       .then((res) => res.json())
       .then((data) => {
         let exams = data.exams;
@@ -25,9 +27,9 @@ export default function AllExams() {
             ongoingExams.push(exams[i]);
           }
         }
-        setUpcomingExams([...upcomingExams]);
-        setPastExams([...pastExams]);
-        setOngoingExams([...ongoingExams]);
+        setUpcomingExams((upcomingExams) => [...upcomingExams]);
+        setPastExams((pastExams) => [...pastExams]);
+        setOngoingExams((ongoingExams) => ongoingExams);
       });
   }, []);
   return (
@@ -48,6 +50,7 @@ export default function AllExams() {
                 label="Start Exam"
                 className="start-exam-btn"
                 onClick={() => navigate(exam._id)}
+                disabled={scores[exam._id] ? true : false}
               />
             </div>
           );
@@ -74,12 +77,20 @@ export default function AllExams() {
       {pastExams.length === 0 ? "There is no past exam assigned to you" : ""};
       <div className="exams-container">
         {pastExams.map((exam, i) => {
+          let score = 0;
+          for (let i = 0; i < exam.qa.length; i++) {
+            if (+exam.qa[i].answer === +scores[exam._id][i]) {
+              score++;
+            }
+          }
           return (
             <div className="exam" key={i}>
               <div>Exam Name - {exam.name}</div>
               <div>Description- {exam.desc}</div>
               <div>Class - {exam.class}</div>
-              <div>Score - {}</div>
+              <div>
+                Score - {score} / {exam.qa.length}
+              </div>
             </div>
           );
         })}

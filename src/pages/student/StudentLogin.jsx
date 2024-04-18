@@ -31,8 +31,9 @@ export default function StudentLogin() {
     let data = await res.json();
     if (data.user.length === 1) {
       window.localStorage.userId = data.user[0]._id;
-      window.localStorage.socres = JSON.stringify(data.user[0].solutions);
-      // console.log(data.user[0]);
+      window.localStorage.scores = JSON.stringify(
+        data.user[0].solutions ? data.user[0].solutions : {}
+      );
       navigate("/student/exams");
     } else {
       alert("Incorrect Email or Password!!!");
@@ -59,6 +60,12 @@ export default function StudentLogin() {
           />
           <Button label="Login" onClick={submitLoginForm} />
         </form>
+        <div
+          className="login-form-link"
+          onClick={() => navigate("/student/signup")}
+        >
+          New User? Register here!
+        </div>
       </div>
     </div>
   );

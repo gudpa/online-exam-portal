@@ -16,5 +16,11 @@
 }
 
 .start-exam-btn {
-    height: 30px;
+  height: 30px;
+}
+
+.start-exam-btn:disabled {
+  opacity: 0.7;
+  border: 1px solid #444;
+  cursor: no-drop;
 }
