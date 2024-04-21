@@ -17,6 +17,8 @@ export default function StudentSignup() {
     fullname: "",
     class: "First Year",
     roll_no: "",
+    college: "",
+    branch: "",
   });
   function changeHandler(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -35,6 +37,7 @@ export default function StudentSignup() {
     );
     let data = await res.json();
     if (data.status === "ok") {
+      console.log(data);
       alert("Student added sucessfully!!!");
       navigate("/student/login");
     }

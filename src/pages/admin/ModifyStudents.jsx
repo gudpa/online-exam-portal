@@ -60,10 +60,14 @@ export default function ModifyStudents() {
   useEffect(() => {
     fetch("http://localhost:5000/api/student/allUsers")
       .then((res) => res.json())
-      .then((data) => setStudents(data.users));
+      .then((data) => {
+        setStudents(data.users)
+      });
+      
   }, [refresh]);
 
   return (
+    
     <div className="modify-students">
       <h2>Manage Students</h2>
       <table>
@@ -73,6 +77,8 @@ export default function ModifyStudents() {
             <th>Email</th>
             <th>Class</th>
             <th>Roll Number</th>
+            <th>College</th>
+            <th>Branch</th>
             <th>Status</th>
             <th>Delete</th>
           </tr>
@@ -85,6 +91,8 @@ export default function ModifyStudents() {
                 <td>{student.email}</td>
                 <td>{student.class}</td>
                 <td>{student.roll_no}</td>
+                <td>{student.college}</td>
+                <td>{student.branch}</td>
                 <td>
                   {student.active ? (
                     <Button

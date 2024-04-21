@@ -3,7 +3,14 @@ import "./styles/AddStudents.css";
 import { Button, Input, Select } from "../../components/Forms";
 
 export default function AddStudents() {
-  const initialState = { class: "", roll_no: "", fullname: "", email: "" };
+  const initialState = {
+    class: "",
+    roll_no: "",
+    fullname: "",
+    email: "",
+    branch: "",
+    college: "",
+  };
   const [students, setStudents] = useState([]);
   const [student, setStudent] = useState(initialState);
   const [classes, setClasses] = useState([{ name: "Select an option" }]);
@@ -30,6 +37,7 @@ export default function AddStudents() {
       setStudent(initialState);
       setStudents([]);
       alert("Students added sucessfully!!!");
+      window.location.reload();
     }
   };
   useEffect(() => {
