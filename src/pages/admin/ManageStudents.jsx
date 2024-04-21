@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import ModifyStudents from "./ModifyStudents";
 import { useNavigate } from "react-router-dom";
+import AddStudents from "./AddStudents";
 
 export default function ManageStudents() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export default function ManageStudents() {
   }, [navigate]);
   return (
     <>
+      <AddStudents />
       <ModifyStudents />
     </>
   );

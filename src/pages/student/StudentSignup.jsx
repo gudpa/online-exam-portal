@@ -36,7 +36,7 @@ export default function StudentSignup() {
     let data = await res.json();
     if (data.status === "ok") {
       alert("Student added sucessfully!!!");
-      navigate("/student/login")
+      navigate("/student/login");
     }
   };
   return (
@@ -71,11 +71,18 @@ export default function StudentSignup() {
             value={input.roll_no}
             onChange={changeHandler}
           />
+
           <Input
-            type="password"
-            placeholder="Password"
-            value={input.password}
-            name="password"
+            placeholder="College Name"
+            name="college"
+            value={input.college}
+            onChange={changeHandler}
+          />
+
+          <Input
+            placeholder="Branch"
+            name="branch"
+            value={input.branch}
             onChange={changeHandler}
           />
 

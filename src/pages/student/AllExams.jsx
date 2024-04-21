@@ -32,6 +32,7 @@ export default function AllExams() {
         setOngoingExams((ongoingExams) => ongoingExams);
       });
   }, []);
+
   return (
     <div className="all-exams-container">
       <h3>Ongoing exams</h3>
@@ -78,9 +79,11 @@ export default function AllExams() {
       <div className="exams-container">
         {pastExams.map((exam, i) => {
           let score = 0;
-          for (let i = 0; i < exam.qa.length; i++) {
-            if (+exam.qa[i].answer === +scores[exam._id][i]) {
-              score++;
+          if (scores[exam._id]) {
+            for (let i = 0; i < exam.qa.length; i++) {
+              if (+exam.qa[i].answer === +scores[exam._id][i]) {
+                score++;
+              }
             }
           }
           return (
