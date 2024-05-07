@@ -37,10 +37,23 @@
   margin-top: 5px;
 }
 
+.signup-form-container-main {
+  padding: 1rem;
+}
+
+.signup-form-container h2 {
+  text-align: center;
+}
+
 .signup-form-container {
-  top: 50px;
-  position: relative;
-  height: 500px;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.signup-form-container .login-form {
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
 .signup-form-container h2 {
@@ -48,5 +61,5 @@
 }
 
 .signup-form-container .login-form {
-  gap: 15px;
+  gap: 1.25rem;
 }

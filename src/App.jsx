@@ -11,6 +11,7 @@ import Exam from "./pages/student/Exam";
 import StudentLogin from "./pages/student/StudentLogin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentSignup from "./pages/student/StudentSignup";
+import StudentForm from "./pages/student/StudentForm";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/student/signup" element={<StudentSignup />} />
           <Route path="/student/exams/:id" element={<Exam />} />
           <Route path="/student/exams" element={<AllExams />} />
+          <Route path="/student/form" element={<StudentForm />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/managestudents" element={<ManageStudents />} />

@@ -1,0 +1,22 @@
+.print-data {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.print-data td {
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+.print-data-main {
+  padding: 1rem;
+}
+.print-data-container {
+  border: 1px solid black;
+  border-radius: 2rem;
+  padding: 1rem;
+}
+.print-btn-container {
+  display: flex;
+  justify-content: end;
+  padding: 1rem;
+}

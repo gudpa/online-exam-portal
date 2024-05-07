@@ -30,6 +30,7 @@ export default function StudentLogin() {
     });
     let data = await res.json();
     if (data.user.length === 1) {
+      window.localStorage.userData = JSON.stringify(data.user[0]);
       window.localStorage.userId = data.user[0]._id;
       window.localStorage.scores = JSON.stringify(
         data.user[0].solutions ? data.user[0].solutions : {}

@@ -60,6 +60,7 @@ export default function Header() {
                   label="Exams"
                   onClick={() => navigate("student/exams")}
                 />
+                <Button label="Form" onClick={() => navigate("student/form")} />
                 <Button label="Logout" onClick={logoutUser} />
               </>
             )}

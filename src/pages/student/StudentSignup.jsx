@@ -19,6 +19,19 @@ export default function StudentSignup() {
     roll_no: "",
     college: "",
     branch: "",
+    fathersname: "",
+    mothersname: "",
+    gender: "Male",
+    dob: "",
+    religion: "",
+    motherTounge: "",
+    familyIncome: "<15,000",
+    nationality: "",
+    addressLine1: "",
+    addressLine2: "",
+    state: "",
+    taluka: "",
+    pincode: "",
   });
   function changeHandler(e) {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -43,8 +56,8 @@ export default function StudentSignup() {
     }
   };
   return (
-    <div className="container">
-      <div className="login-form-container signup-form-container">
+    <div className="signup-form-container-main">
+      <div className="signup-form-container">
         <h2>Signup Form</h2>
         <form className="login-form" onSubmit={(e) => e.preventDefault()}>
           <Input
@@ -54,11 +67,117 @@ export default function StudentSignup() {
             name="fullname"
             onChange={changeHandler}
           />
+
+          <Input
+            type="text"
+            placeholder="Father's name"
+            value={input.fathersname}
+            name="fathersname"
+            onChange={changeHandler}
+          />
+
+          <Input
+            type="text"
+            placeholder="Mother's name"
+            value={input.mothersname}
+            name="mothersname"
+            onChange={changeHandler}
+          />
+
           <Input
             type="text"
             placeholder="Email"
             value={input.email}
             name="email"
+            onChange={changeHandler}
+          />
+
+          <Select
+            onChange={changeHandler}
+            name="gender"
+            value={input.gender}
+            options={[{ name: "Male" }, { name: "Female" }]}
+          />
+
+          <Input
+            type="text"
+            placeholder="DOB (DD/MM/YYYY)"
+            value={input.dob}
+            name="dob"
+            onChange={changeHandler}
+          />
+
+          <Input
+            type="text"
+            placeholder="Religion"
+            value={input.religion}
+            name="religion"
+            onChange={changeHandler}
+          />
+
+          <Input
+            type="text"
+            placeholder="Mother Tounge"
+            value={input.motherTounge}
+            name="motherTounge"
+            onChange={changeHandler}
+          />
+
+          <Select
+            onChange={changeHandler}
+            name="familyIncome"
+            value={input.familyIncome}
+            options={[
+              { name: "<15,000" },
+              { name: "15,001 - 50,000" },
+              { name: "50,001 - 1,50,500" },
+              { name: ">1,50,000" },
+            ]}
+          />
+
+          <Input
+            type="text"
+            placeholder="Nationality"
+            value={input.nationality}
+            name="nationality"
+            onChange={changeHandler}
+          />
+
+          <Input
+            type="text"
+            placeholder="Address Line 1"
+            value={input.addressLine1}
+            name="addressLine1"
+            onChange={changeHandler}
+          />
+
+          <Input
+            type="text"
+            placeholder="Address Line 2"
+            value={input.addressLine2}
+            name="addressLine2"
+            onChange={changeHandler}
+          />
+
+          <Input
+            type="text"
+            placeholder="State"
+            value={input.state}
+            name="state"
+            onChange={changeHandler}
+          />
+          <Input
+            type="text"
+            placeholder="Taluka"
+            value={input.taluka}
+            name="taluka"
+            onChange={changeHandler}
+          />
+          <Input
+            type="text"
+            placeholder="Pincode"
+            value={input.pincode}
+            name="pincode"
             onChange={changeHandler}
           />
           <Select
@@ -89,8 +208,20 @@ export default function StudentSignup() {
             onChange={changeHandler}
           />
 
-          <Button label="Signup" onClick={clickHandler} />
+          <Input
+            placeholder="Password"
+            name="password"
+            value={input.password}
+            onChange={changeHandler}
+            type="password"
+          />
         </form>
+
+        <Button
+          label="Signup"
+          onClick={clickHandler}
+          style={{ margin: "1rem 25%", width: "50%" }}
+        />
         <div
           className="login-form-link"
           onClick={() => navigate("/student/login")}
