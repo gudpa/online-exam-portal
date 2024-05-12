@@ -1,0 +1,31 @@
+.one-student {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  top: 40px;
+  padding: 20px;
+}
+
+.close-icon {
+  position: absolute;
+  right: 20px;
+  top: -35px;
+  font-size: 20px;
+  cursor: pointer;
+  min-width: auto;
+  height: 30px;
+  width: 30px;
+}
+
+.show-hide-btn {
+  margin-left: 2rem;
+}
+
+.one-student td input {
+  height: 40px;
+  font-size: 20px;
+  padding: 0 10px;
+}

@@ -1,17 +1,18 @@
-import "./styles/StudentForm.css";
+import { useState } from "react";
 import { Button } from "../../components/Forms";
+import "./styles/StudentPopup.css";
 
-export default function StudentForm() {
-  const data = JSON.parse(window.localStorage.userData);
-  const printHandler = () => {
-    window.print();
-  };
+export default function StudentPopup({ data, setPopup }) {
+  const [show, setShow] = useState(false);
+
   return (
-    <div className="print-data-main">
-      <div className="print-data-container">
-        <div className="print-btn-container">
-          <Button label="Print" onClick={printHandler} />
-        </div>
+    <div className="one-student">
+      <Button
+        onClick={() => setPopup(false)}
+        className="close-icon"
+        label="X"
+      />
+      <div className="all-data">
         <table className="print-data">
           <tr>
             <td>Full name</td>
@@ -88,6 +89,25 @@ export default function StudentForm() {
           <tr>
             <td>Branch Name</td>
             <td>{data.branch}</td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td>
+              <input type={show ? "text" : "password"} value={data.password} />
+              {show ? (
+                <Button
+                  label="Hide"
+                  className="all-ok show-hide-btn"
+                  onClick={() => setShow(false)}
+                />
+              ) : (
+                <Button
+                  label="Show"
+                  className="all-ok show-hide-btn"
+                  onClick={() => setShow(true)}
+                />
+              )}
+            </td>
           </tr>
         </table>
       </div>

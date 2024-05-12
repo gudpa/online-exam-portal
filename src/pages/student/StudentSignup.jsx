@@ -153,14 +153,6 @@ export default function StudentSignup() {
 
           <Input
             type="text"
-            placeholder="Address Line 2"
-            value={input.addressLine2}
-            name="addressLine2"
-            onChange={changeHandler}
-          />
-
-          <Input
-            type="text"
             placeholder="State"
             value={input.state}
             name="state"
@@ -205,6 +197,13 @@ export default function StudentSignup() {
             placeholder="Branch"
             name="branch"
             value={input.branch}
+            onChange={changeHandler}
+          />
+
+          <Input
+            placeholder="Phone Number"
+            name="number"
+            value={input.number}
             onChange={changeHandler}
           />
 

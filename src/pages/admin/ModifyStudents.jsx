@@ -1,11 +1,14 @@
 import "./styles/ModifyStudents.css";
 import { Button } from "../../components/Forms";
 import { useEffect, useState } from "react";
+import StudentPopup from "./StudentPopup";
 
 export default function ModifyStudents() {
   const [students, setStudents] = useState([]);
   const [refresh, setRefresh] = useState(true);
-  
+  const [popup, setPopup] = useState(false);
+  const [data, setData] = useState({});
+
   const activateStudent = (id) => {
     fetch("http://localhost:5000/api/student/activateUser/" + id, {
       method: "POST",
@@ -57,69 +60,83 @@ export default function ModifyStudents() {
       });
   };
 
+  const viewStudent = (student) => {
+    setPopup(true);
+    setData(student);
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/api/student/allUsers")
       .then((res) => res.json())
       .then((data) => {
-        setStudents(data.users)
+        setStudents(data.users);
       });
-      
   }, [refresh]);
 
   return (
-    
-    <div className="modify-students">
-      <h2>Manage Students</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Class</th>
-            <th>Roll Number</th>
-            <th>College</th>
-            <th>Branch</th>
-            <th>Status</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student, i) => {
-            return (
-              <tr key={i}>
-                <td>{student.fullname}</td>
-                <td>{student.email}</td>
-                <td>{student.class}</td>
-                <td>{student.roll_no}</td>
-                <td>{student.college}</td>
-                <td>{student.branch}</td>
-                <td>
-                  {student.active ? (
+    <>
+      {popup ? <StudentPopup data={data} setPopup={setPopup} /> : ""}
+      <div className="modify-students">
+        <h2>Manage Students</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Class</th>
+              <th>Roll Number</th>
+              <th>College</th>
+              <th>Branch</th>
+              <th>Status</th>
+              <th>Delete</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student, i) => {
+              return (
+                <tr key={i}>
+                  <td>{student.fullname}</td>
+                  <td>{student.email}</td>
+                  <td>{student.class}</td>
+                  <td>{student.roll_no}</td>
+                  <td>{student.college}</td>
+                  <td>{student.branch}</td>
+                  <td>
+                    {student.active ? (
+                      <Button
+                        label="De-Activate"
+                        className="danger"
+                        onClick={() => deactivateStudent(student._id)}
+                      />
+                    ) : (
+                      <Button
+                        label="Activate"
+                        className="all-ok"
+                        onClick={() => activateStudent(student._id)}
+                      />
+                    )}
+                  </td>
+                  <td>
                     <Button
-                      label="De-Activate"
+                      label="Delete"
                       className="danger"
-                      onClick={() => deactivateStudent(student._id)}
+                      onClick={() => deleteStudent(student._id)}
                     />
-                  ) : (
+                  </td>
+                  <td>
                     <Button
-                      label="Activate"
+                      label="View"
                       className="all-ok"
-                      onClick={() => activateStudent(student._id)}
+                      onClick={() => viewStudent(student)}
                     />
-                  )}
-                </td>
-                <td>
-                  <Button
-                    label="Delete"
-                    className="danger"
-                    onClick={() => deleteStudent(student._id)}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
